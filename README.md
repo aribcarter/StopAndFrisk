@@ -7,3 +7,6 @@ My hope to make to make a page in the vein of Shirley Wu's [Movie Flower](http:/
 
 ## Process
 1. I first used R to port in 17 years of data from the NYPD and clean it so each year's datasheet plays nice with the others
+
+## Challenges
+- I had trouble verifying the accurateness of my data in R. I viewed the source datasheets a lot and cross referenced the [NYC ACLU's Published Numbers](https://www.nyclu.org/en/Stop-and-Frisk-data), but there were still several inconsistencies, most notably hundreds of thousands of fewer stops overall in the 2000's that I counted than were published by the ACLU. I contacted the woman on their staff who deals with the data to see if they counted a different way, but did not hear back. However, between independently computing totals for data cross-sections outside of the functions I wrote in R and accounting for edge-cases in the NYPD's data (like from 2017-2019 they only confirm weapons being present so there were many NULL values), I am confident that the data I publish in the visualization is accurate.
