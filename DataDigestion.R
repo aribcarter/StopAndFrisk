@@ -71,6 +71,7 @@ CheckMatching<-function(){
       else
         print(paste(year-1, "and", year, "match"))
     }
+    print(yearTable$Year[[1]])
     prev <- sort(colnames(yearTable))
   }
 }
@@ -125,9 +126,53 @@ FilterTable<-function(table, fileType="Csv"){
   renames <- renames[!is.na(renames$Renames),]
   table <- renameCols(table, renames$Codes, renames$Renames)
   
+  table <- mutate_all(table, as.character)
+  table[,colnames(table)] <- lapply(table[,colnames(table)], function(x) gsub(" ", "", x))
+
   table
 }
 
+CompressForceOnUnarmed<-function(table){
+  if(as.numeric(table$Year[[1]]) < 2017)
+    table$Armed <- table$pistol=="Y" | table$riflshot=="Y" | table$asltweap=="Y" | table$machgun=="Y" | 
+                      table$Knife=="Y" | table$othrweap=="Y"
+  else
+    table$Armed <- (table$Gun=="Y" | table$Knife=="Y" | table$OtherWeapon=="Y")
+  
+  View(table)
+  nrow(table[which(table$Armed==FALSE & table$GunDrawn=="Y"),])
+}
 
+CompressInnocence<-function(table){
+  nrow(table[which(table$Arrested=="N" & table$Summoned=="N"),])
+}
+
+#to be used for either annual or precinct data
+GenerateTable<-function(table){
+  blackSplit <- table[which(table$Race == "B" | table$Race == "BLACK"),]
+  whiteSplit <- table[which(table$Race == "W" | table$Race == "WHITE"),]
+  
+  data.frame("TotalStops"=nrow(table),"BlackStops"=nrow(blackSplit),"BlackInnocents"=CompressInnocence(blackSplit),
+             "BlackUnarmed"=CompressForceOnUnarmed(blackSplit), "WhiteStops"=nrow(whiteSplit), "WhiteInnocents"=CompressInnocence(whiteSplit),
+             "WhiteUnarmed"=CompressForceOnUnarmed(whiteSplit)) 
+}
+
+#Want to get instance of black and white splits for:
+  #Innocence, stops, guns drawn while unarmed
+#Also have total # of stops per year
+GenerateBreakData<-function(table){
+  years <- c(2003:2019)
+  AnnualSFData <- data.frame()
+  #colnames(AnnualSFData)<-c("Year", "TotalStops", "BlackStops", "WhiteStops", "BlackInnocents", "White Innocents", "BlackGunDraws", "WhiteGunDraws")
+  #View(AnnualSFData)
+  for(year in years){
+    yearTable <- GenerateTable(ReturnTable(year))
+    yearFrame <- data.frame("Year"=year)
+    AnnualSFData <- rbind(AnnualSFData, cbind(yearFrame, yearTable))
+    #View(AnnualSFData)
+    print(paste(year, "loaded"))
+  }
+  write.csv(AnnualSFData, "StopAndFriskByYear.csv", row.names = F)
+}
 
 
