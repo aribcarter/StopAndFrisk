@@ -38,7 +38,6 @@ export default {
       smallestRadius: 5,
       largestRadius: 30,
       svgSize: 400,
-      activeAnimation: null,
     }
   },
 
@@ -74,15 +73,6 @@ export default {
         if(this.safData.length > 1){resolve("resolved")}
         else{reject("fail")}
       })
-    },
-
-    GetSampleData(){
-        this.VerifyData().then(()=>{
-          return this.safData[14];
-        })
-        .catch((message)=>{
-          console.log(message)
-        })
     },
 
     YearSplitProcessor:function(d){
