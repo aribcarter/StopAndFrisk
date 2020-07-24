@@ -1,5 +1,7 @@
 # Visualizing Stop and Frisk in NYC
 
+## [Link to Visualization](https://aribcarter.github.io/StopAndFrisk/)
+
 ## Inspiration
 As part of my summer effort to practice data visualiztion, I chose to participate in the Storytelling with Data monthly challenge, and even though I was late to the party, wanted to do the [June Black and White Challenge](https://community.storytellingwithdata.com/challenges/52e943ac-9468-4b4e-a8d8-14eadd6a3394). I found the theme appropriate due to the BLM protests- a cause that emphasizes the contrast between black and white experiences, especially experiences related to policing. Thus, my goal for this visualiztion is to provide a sense of the qualitative and quantitative difference for how people of different races feel the NYPD's presence. 
 
