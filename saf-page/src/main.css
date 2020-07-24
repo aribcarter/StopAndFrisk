@@ -3,3 +3,26 @@
 @tailwind components;
 
 @tailwind utilities;
+
+@responsive{
+  .half-screen-container{
+    display: inline-block;
+    position: relative;
+    width: 50%;
+    padding-bottom: 50%;
+    vertical-align: top;
+  }
+
+  .full-screen-container{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: top;
+  }
+}
+
+body{
+  height: 100%;
+  background: linear-gradient(90deg, #1c1c1c 50%, #fcfcfc 50%);
+}

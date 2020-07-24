@@ -38,6 +38,7 @@ export default {
       smallestRadius: 5,
       largestRadius: 30,
       svgSize: 400,
+      activeAnimation: null,
     }
   },
 
@@ -121,30 +122,14 @@ export default {
         var crackSwath = (split.innocent/split.stops)*360
         var normalizedStops = split.stops/totalStops
 
-        /*var centerCircle = d3.arc()
-                            .innerRadius(baseRadius)
-                            .outerRadius(baseRadius)
-                            .startAngle(2*Math.PI)
-                            .endAngle(0)
-                            */
-
-        var container = ''
-        if(tag=='#sampleBreak'){container="sample-break-container"}
-        else{container='break-container'}
-
         var svg = d3.select(tag)
-                    .classed(container, true)
                     .append("svg")
                     .classed("svg-content-responsive", true)
                     .attr("preserveAspectRatio", "xMinYMin meet")
                     .attr("viewBox", "0 0 "+svgSize + " "+svgSize)
                     .append("g")
 
-        /*
-        svg.append("path")
-            .attr("d", centerCircle)
-            .attr("transform", "translate("+svgSize/2+","+svgSize/2+")")
-        */
+
       for(var i=0; i<crackSwath; i++){
         var initialX = svgSize/2+(baseRadius*Math.sin(i*(Math.PI/180)))
         var initialY = svgSize/2+(baseRadius*Math.cos(i*(Math.PI/180)))
@@ -414,24 +399,6 @@ export default {
 </script>
 
 <style>
-  .sample-break-container {
-  display: inline-block;
-  position: relative;
-  width: 50%;
-  padding-bottom: 50%; /* aspect ratio */
-  vertical-align: top;
-  overflow: hidden;
-  }
-
-  .break-container{
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%; /* aspect ratio */
-    vertical-align: top;
-    overflow: hidden;
-  }
-
   .svg-content-responsive {
   display: inline-block;
   position: absolute;

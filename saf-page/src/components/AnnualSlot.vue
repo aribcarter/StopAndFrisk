@@ -5,47 +5,45 @@
 
       <div class="relative inset-0 flex items-center justify-center align-top inline-block w-full text-gray-100 fadeBlock">
 
-        <div class="fill-current stroke-current removeFade" :id="this.blackTag"></div>
+        <div class="fill-current stroke-current full-screen-container removeFade" :id="this.blackTag"></div>
 
-        <div class="absolute text-center leading-tight opacity-0 addFade text-xs p-8 lg:text-lg lg:p-2" :id="this.blackFade">
+        <div class="absolute text-center leading-tight opacity-0 addFade text-2xs p-3 md:text-lg lg:p-2" :id="this.blackFade">
           <p>Black New Yorkers experienced {{ this.FormatStopPercentage(this.yearData.blackSplit) }} of total stops</p>
           <br>
           <p>{{ this.FormatInnocentPercentage(this.yearData.blackSplit) }} of these stops found no wrongdoing</p>
           <br>
-          <p>On {{ this.yearData.blackSplit.unarmed }} stops officers drew
-          <br>their gun against an unarmed black New Yorker</p>
+          <p>On {{ this.yearData.blackSplit.unarmed }} stops officers drew their gun against an unarmed black New Yorker</p>
         </div>
 
       </div>
 
-      <div class="absolute right-0 text-gray-100 text-xl font-semibold text-right" id="yearText">
-          <h1 class="">{{this.yearData.year[0] + this.yearData.year[1]}}</h1>
-          <h1 class="text-base">{{ this.FormatTotalStops(true) }}</h1>
+      <div class="absolute right-0 text-gray-100 font-semibold text-right" id="yearText">
+          <h1 class="text-sm md:text-xl">{{this.yearData.year[0] + this.yearData.year[1]}}</h1>
+          <h1 class="text-2xs md:text-base">{{ this.FormatTotalStops(true) }}</h1>
         </div>
 
     </div>
 
-    <div class="bg-gray-100 w-1/2 p-12 flex items-center justify-center relative">
+    <div class="bg-gray-100 w-1/2 p-8 flex items-center justify-center relative">
 
       <div class="relative inset-0 flex items-center justify-center align-top inline-block w-full text-viz-black fadeBlock">
 
-        <div class="fill-current stroke-current removeFade" :id="this.whiteTag"></div>
+        <div class="fill-current stroke-current full-screen-container removeFade" :id="this.whiteTag"></div>
 
-        <div class="absolute text-center leading-tight opacity-0 addFade text-xs p-8 lg:text-lg lg:p-2" :id="this.whiteFade">
+        <div class="absolute text-center leading-tight opacity-0 addFade text-2xs p-3 md:text-lg lg:p-2" :id="this.whiteFade">
           <p>White New Yorkers experienced {{ this.FormatStopPercentage(this.yearData.whiteSplit) }} of total stops</p>
           <br>
           <p>{{ this.FormatInnocentPercentage(this.yearData.whiteSplit) }} of these stops found no wrongdoing</p>
           <br>
-          <p>On {{ this.yearData.whiteSplit.unarmed }} stops officers drew
-          <br>their gun against an unarmed white New Yorker</p>
+          <p>On {{ this.yearData.whiteSplit.unarmed }} stops officers drew their gun against an unarmed white New Yorker</p>
         </div>
 
       </div>
 
 
-        <div class="absolute left-0 text-viz-black text-xl font-semibold" id="yearText">
-          <h1 class="">{{this.yearData.year[2] + this.yearData.year[3]}}</h1>
-          <h1 class="text-base">{{ this.FormatTotalStops(false) }}</h1>
+        <div class="absolute left-0 text-viz-black font-semibold" id="yearText">
+          <h1 class="text-sm md:text-xl">{{this.yearData.year[2] + this.yearData.year[3]}}</h1>
+          <h1 class="text-2xs md:text-base">{{ this.FormatTotalStops(false) }}</h1>
         </div>
 
     </div>
@@ -95,7 +93,7 @@
         })
 
         $('.fadeBlock').on('touchend',function(){
-          $(this)[0].animation.play()
+          $(this)[0].animation.reverse()
         })
       },
 

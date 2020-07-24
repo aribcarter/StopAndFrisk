@@ -23,7 +23,8 @@
     </div>
 
     <div id="sample" class="flex p-2 items-center justify-center w-full">
-      <div class="fill-current stroke-current text-gray-100" id="sampleBreak"></div>
+      <div class="fill-current stroke-current text-gray-100 full-screen-container md:half-screen-container"
+      id="sampleBreak"></div>
     </div>
 
   </div>
